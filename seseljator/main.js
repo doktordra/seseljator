@@ -78,6 +78,8 @@ seki.get_name_tokens = function(limit, nouns) {
 
     if (nouns > 1) {
       var noun2 = seki.random_with_gender(seki.nouns, noun[1], [noun]);
+	    if (noun2 == noun) {var noun2 = seki.random_with_gender(seki.nouns, noun[1], [noun]);
+	    }
       output.push("и");
       output.push(noun2);
     }
