@@ -25,7 +25,7 @@ body {
   margin-top: 20pt;
 }
 
-#next, #modifier, #share {
+#next, #modifier, #voice, #share {
   background-color: #333;
   font-size: 22pt;
   vertical-align: middle;
@@ -39,7 +39,7 @@ body {
   text-decoration: none;
 }
 
-#modifier-check {
+#modifier-check, #voice-check {
   -ms-transform: scale(2); /* IE */
   -moz-transform: scale(2); /* FF */
   -webkit-transform: scale(2); /* Safari and Chrome */
@@ -80,3 +80,6 @@ body {
   text-transform: uppercase;
   top: 640pt;
 }
+
+body { cursor: pointer; }
+html, body { min-height: 100vh; }
