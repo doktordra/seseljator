@@ -82,4 +82,4 @@ body {
 }
 
 body { cursor: pointer; }
-html, body { min-height: 100vh; }
+html, body { min-height: 100vh; cursor: pointer; -webkit-tap-highlight-color: transparent; }
