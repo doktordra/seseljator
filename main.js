@@ -4,15 +4,10 @@ seki.update = function(content) {
   document.getElementById("content").innerHTML = content;
 
   var encoded_content = encodeURIComponent(content);
-  var url = "https://www.facebook.com/dialog/feed?";
-  url += "app_id=1185271438163741";
-  url += "&display=popup&caption=Нова књига из едиције Шешељатора";
-  url += "&description=" + encoded_content;
-  url += "&picture=http://www.seseljator.com/icon.jpg";
-  url += "&link=http://www.seseljator.com/?title=" + encoded_content;
-  url += "&redirect_uri=http://www.seseljator.com/?title=" + encoded_content;
-
-  document.getElementById("share-link").href = url;
+  var page = location.origin + location.pathname + "?title=" + encoded_content;
+  seki.share_url = page;
+  document.getElementById("share-link").href =
+    "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(page);
 };
 
 seki.generate = function() {
@@ -508,6 +503,13 @@ seki.next = function() {
 };
 
 document.init_seki = function() {
+  document.getElementById("share-link").addEventListener("click", function(e) {
+    if (navigator.share) {
+      e.preventDefault();
+      navigator.share({ title: "Шешељатор 1.0", url: seki.share_url }).catch(function() {});
+    }
+  });
+
   document.addEventListener("click", function(e) {
     if (e.target.closest("#modifier, #voice, #share-link")) return;
     seki.next();
