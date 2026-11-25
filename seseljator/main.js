@@ -483,23 +483,8 @@ seki.bonuses = [
   ["ДИСЕРТАЦИЈА"],
 ];
 
-seki.speak = function(text) {
-  if (!window.speechSynthesis || !document.getElementById("voice-check").checked) return;
-  window.speechSynthesis.cancel();
-  var u = new SpeechSynthesisUtterance(text.replace(/\s+/g, " ").toLowerCase());
-  var voices = window.speechSynthesis.getVoices();
-  var voice = voices.filter(function(v) { return /^sr/i.test(v.lang); })[0] ||
-              voices.filter(function(v) { return /^(hr|bs)/i.test(v.lang); })[0];
-  if (voice) u.voice = voice;
-  u.lang = voice ? voice.lang : "sr-RS";
-  u.pitch = 0.6;
-  u.rate = 0.9;
-  window.speechSynthesis.speak(u);
-};
-
 seki.next = function() {
   seki.update(seki.generate());
-  seki.speak(document.getElementById("content").textContent);
 };
 
 document.init_seki = function() {
@@ -511,7 +496,7 @@ document.init_seki = function() {
   });
 
   document.addEventListener("click", function(e) {
-    if (e.target.closest("#modifier, #voice, #share-link")) return;
+    if (e.target.closest("#modifier, #share-link")) return;
     seki.next();
   });
 
